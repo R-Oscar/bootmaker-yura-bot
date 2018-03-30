@@ -9,7 +9,7 @@ const token = '553888317:AAEGsi1GY_srBfcXqLIOQdtT5qfW19tNleQ';
 const bot = new TelegramBot(token, {polling: true});
 
 // const regexp = /(хуй)|(пизда)/g;
-const regexp = /(?:по|н?а|вы?|за|о|н[и|е]|\s|^)(ху[й|и|е|я])|(п[и|е|ё]зд)|([е|ё]б[н]?[а|е|ё|у|ы|с|о][л|н|т|в])|((?:вы|по|^|\s)бля[дт\s])|(пид[оа]р)|(педик)|(суч?к[аи])/;
+const regexp = /(?:по|н?а|вы?|за|о|н[и|е]|\s|^)(ху[й|и|е|я])|(п[и|е|ё]зд)|([е|ё]б[н]?[а|е|ё|у|ы|с|о][л|н|т|в])|((?:вы|по|^|\s)бля[дт\s])|(пид[оа]р)|(педик)|(суч?к[аи])/g;
 
 const regexpMap = ['хуй', 'пизда', 'ебать', 'бля(дь)', 'пидор', 'педик', 'сука'];
 
@@ -45,38 +45,30 @@ bot.onText(/\/bmy(.*)/, (msg, match) => {
 });
 
 bot.onText(/(.+)/, (msg, match) => {
-  let badWords = match[0].match(regexp);
-
-  console.log(badWords, 'badWords');
-
-  // console.log(match);
-  // console.log(badWords);
-
-  if (!badWords) return;
+  let badWord;
 
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
 
-  // bot.sendMessage(chatId, `Ах ты хуев матершинник, ${name}!`);
+  while (badWord = regexp.exec(match[0])) {
+    // bot.sendMessage(chatId, `Ах ты хуев матершинник, ${name}!`);
 
-  if (!users.containsUser(name)) {
-    users.addUser(name);
-  }
-
-  badWords.forEach((el, i) => {
-    if (i !== 0)
-      console.log(el);
-    if (el && i !== 0) {
-      let word = regexpMap[i - 1];
-
-      if (users[name].containsWord(word)) {
-        users[name].increaseWord(word);
-      } else {
-        users[name].addWord(word);
-      }
+    if (!users.containsUser(name)) {
+      users.addUser(name);
     }
+
+    badWord.forEach((el, i) => {
+      if (el && i !== 0) {
+        let word = regexpMap[i - 1];
+
+        if (users[name].containsWord(word)) {
+          users[name].increaseWord(word);
+        } else {
+          users[name].addWord(word);
+        }
+      }
+    });
   }
-  );
 });
 
 bot.on('polling_error', (error) => {
