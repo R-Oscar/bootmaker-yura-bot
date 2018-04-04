@@ -5,10 +5,20 @@ const { UsersController } = require('./controllers/usersController.js');
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '553888317:AAEGsi1GY_srBfcXqLIOQdtT5qfW19tNleQ';
+// Create a bot that uses 'polling' to fetch new updates
+const options = {
+  webHook: {
+    port: process.env.PORT
+  }
+};
+const url = 'https://bootmaker-yura-bot.herokuapp.com:443';
+const bot = new TelegramBot(token, options);
+
+bot.setWebHook(`${url}/bot${token}`);
+
+
 const dbURL = 'mongodb://admin:qwe123@ds046067.mlab.com:46067/bmy';
 
-// Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
 
 // const regexp = /(хуй)|(пизда)/g;
 const regexp = /(?:по|н?а|вы?|за|о|н[и|е]|\s|^)(ху[й|и|е|я])|(п[и|е|ё]зд)|([е|ё]б[н]?[а|е|ё|у|ы|с|о][л|н|т|в])|((?:вы|по|^|\s)бля[дт\s])|(пид[оа]р)|(педик)|(суч?к[аи])/gi;
