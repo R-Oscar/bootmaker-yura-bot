@@ -29,6 +29,8 @@ db.on('open', () => {
 		console.log(await usersController.showStats());
 
 		console.log(await UsersController.containsUser(123));
+
+		console.log(await UsersController.showStatsFor('Anton'));;
 	})();
 
 	// db.db.listCollections().toArray((err, names) => {

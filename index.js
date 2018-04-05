@@ -59,14 +59,12 @@ db.on('open', () => {
           return bot.sendMessage(chatId, `Бля, похоже этот хуй ещё не матюгался!`);
         }
 
-        // let stringBuffer = '';
+        let stringBuffer = '';
 
-        // stringBuffer += `Хочешь посмотреть статистику этого гандона, ${resp}?\n`;
-        // stringBuffer += users[resp].showStats();
+        stringBuffer += `Хочешь посмотреть статистику этого гандона, ${resp}?\n`;
+        stringBuffer +=  UsersController.showStatsFor(resp);
         
-        // bot.sendMessage(chatId, stringBuffer);
-
-        bot.sendMessage(chatId, 'Сорян, но эта функция пока не работает');
+        bot.sendMessage(chatId, stringBuffer);
       }
     })();
   });

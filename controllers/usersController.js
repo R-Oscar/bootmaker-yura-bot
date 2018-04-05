@@ -74,6 +74,20 @@ class UsersController {
 	static async containsUser(tlg_id) {
 		return await Users.findOne({ tlg_id }) !== null;
 	}
+
+	static async showStatsFor(name) {
+		try {
+			let result = '';
+			const query = await Users.findOne({ name }, 'dictionary').exec();
+
+			query.dictionary.forEach(el => {
+				result += `Слово: ${el.word}, частота употребления: ${el.occurence}\n`;
+			});
+			return result;
+		} catch (err) {
+			console.error(err);
+		}
+	}
 }
 
 exports.UsersController = UsersController;
