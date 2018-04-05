@@ -62,7 +62,7 @@ db.on('open', () => {
         let stringBuffer = '';
 
         stringBuffer += `Хочешь посмотреть статистику этого гандона, ${resp}?\n`;
-        stringBuffer +=  UsersController.showStatsFor(resp);
+        stringBuffer +=  await UsersController.showStatsFor(resp);
         
         bot.sendMessage(chatId, stringBuffer);
       }
