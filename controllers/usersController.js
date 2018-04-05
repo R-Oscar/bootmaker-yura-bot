@@ -26,10 +26,15 @@ class UsersController {
 			let result = '';
 			const query = await Users.findOne({ tlg_id: this.tlg_id }, 'dictionary').exec();
 
+			let sum = 0;
+
 			query.dictionary.forEach(el => {
+				sum += el.occurence;
 				result += `Слово: ${el.word}, частота употребления: ${el.occurence}\n`;
 			});
 			
+			result += `Выругался в общем: ${sum} раз!`;
+
 			return result;
 		} catch (err) {
 			console.error(err);

@@ -28,7 +28,7 @@ db.on('open', () => {
 		console.log(await usersController.increaseWord('бля(дь)'));
 		console.log(await usersController.showStats());
 
-		console.log(await UsersController.containsUser(123));
+		console.log(await UsersController.containsUser('в смысле'));
 
 		console.log(await UsersController.showStatsFor('Anton'));;
 	})();
