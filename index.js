@@ -55,7 +55,7 @@ db.on('open', () => {
 
         bot.sendMessage(chatId, stringBuffer);
       } else {
-        if (await !UsersController.containsUser(tlg_id)) {
+        if (!await UsersController.containsUser(tlg_id)) {
           return bot.sendMessage(chatId, `Бля, похоже этот хуй ещё не матюгался!`);
         }
 
