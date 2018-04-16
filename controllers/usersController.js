@@ -33,7 +33,7 @@ class UsersController {
 				result += `Слово: ${el.word}, частота употребления: ${el.occurence}\n`;
 			});
 			
-			result += `Выругался в общем: ${sum} раз!`;
+			result += `Выругался в общем: ${sum} раз!\n`;
 
 			return result;
 		} catch (err) {
@@ -85,9 +85,15 @@ class UsersController {
 			let result = '';
 			const query = await Users.findOne({ name }, 'dictionary').exec();
 
+			let sum = 0;
+
 			query.dictionary.forEach(el => {
+				sum += el.occurence;
 				result += `Слово: ${el.word}, частота употребления: ${el.occurence}\n`;
 			});
+
+			result += `Выругался в общем: ${sum} раз!\n`;
+
 			return result;
 		} catch (err) {
 			console.error(err);
