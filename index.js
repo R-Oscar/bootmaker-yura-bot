@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const mongoose = require('mongoose');
+const petrovich = require('petrovich');
 
 const { UsersController } = require('./controllers/usersController.js');
 
@@ -59,7 +60,7 @@ db.on('open', () => {
 
         let stringBuffer = '';
 
-        stringBuffer += `Хочешь посмотреть статистику этого гандона, ${resp}?\n`;
+        stringBuffer += `Хочешь посмотреть статистику этого гандона, ${petrovich.male.first.genitive(resp)}?\n`;
         stringBuffer +=  await UsersController.showStatsFor(resp);
         
         bot.sendMessage(chatId, stringBuffer);

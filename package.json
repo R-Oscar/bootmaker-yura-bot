@@ -8,7 +8,8 @@
     "mongodb": "^3.0.5",
     "mongoose": "^5.0.12",
     "node-telegram-bot-api": "^0.30.0",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "petrovich": "^0.2.1"
   },
   "scripts": {
     "start": "node index.js"
