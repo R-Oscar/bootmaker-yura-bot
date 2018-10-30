@@ -98,7 +98,7 @@ db.on("open", () => {
         for (let i = 1; i < badWords.length; ++i) {
           if (badWords[i]) {
             let word = regexpMap[i - 1];
-            console.log(badWords[i], word);
+            // console.log(badWords[i], word);
             await usersController.increaseWord(word);
           }
         }
