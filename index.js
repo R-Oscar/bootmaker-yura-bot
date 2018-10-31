@@ -87,11 +87,15 @@ db.on("open", () => {
   bot.onText(/(.+)/, async (msg, match) => {
     let badWords;
 
+    const input = match[0];
+
     const chatId = msg.chat.id;
     const name = msg.from.first_name;
     const tlg_id = msg.from.id;
 
-    while ((badWords = regexp.exec(match[0]))) {
+    console.log(input.match(regexp).length);
+
+    while ((badWords = regexp.exec(input))) {
       console.log(badWords);
       // bot.sendMessage(chatId, `Ах ты хуев матершинник, ${name}!`);
       let usersController = new UsersController();
