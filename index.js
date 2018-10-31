@@ -92,6 +92,7 @@ db.on("open", () => {
     const tlg_id = msg.from.id;
 
     while ((badWords = regexp.exec(match[0]))) {
+      console.log(badWords);
       // bot.sendMessage(chatId, `Ах ты хуев матершинник, ${name}!`);
       let usersController = new UsersController();
       await usersController.init(tlg_id, name);
