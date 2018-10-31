@@ -40,7 +40,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 db.on("open", () => {
-  console.log("Connection to database established!");
+  console.log("Connection to database is established!");
 
   bot.onText(/\/bmy(.*)/, async (msg, match) => {
     const chatId = msg.chat.id;
@@ -93,10 +93,7 @@ db.on("open", () => {
     const name = msg.from.first_name;
     const tlg_id = msg.from.id;
 
-    console.log(input.match(regexp).length);
-
     while ((badWords = regexp.exec(input))) {
-      console.log(badWords);
       // bot.sendMessage(chatId, `Ах ты хуев матершинник, ${name}!`);
       let usersController = new UsersController();
       await usersController.init(tlg_id, name);
@@ -111,10 +108,10 @@ db.on("open", () => {
     }
   });
 
-  bot.on("edited_message", (a, b) => {
-    console.log(a);
-    console.log(b);
-  });
+  // bot.on("edited_message", (a, b) => {
+  //   console.log(a);
+  //   console.log(b);
+  // });
 
   bot.on("polling_error", error => {
     console.log(error);
