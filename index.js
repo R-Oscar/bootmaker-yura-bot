@@ -21,7 +21,7 @@ bot.setWebHook(`${url}/bot${token}`);
 
 const dbURL = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${
   process.env.DB_HOST
-}:${process.env.DB_PORT}/${process.env.DB_PORT}`;
+}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 const regexp = /(?:по|н?а|вы?|за|о|н[и|е]|\s|^)(ху[й|и|е|я])|(п[и|е|ё]зд)|([е|ё]б[н]?[а|е|ё|у|ы|с|о][л|н|т|в][аеёиноуэыюя^\s]?)|(бля(?=[дт\s]|$))|(пид[оа]р)|(педик)|(суч?к[аи])/gi;
 
 const regexpMap = [
